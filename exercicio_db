@@ -1,0 +1,83 @@
+import sqlite3
+
+# Conectar ao banco de dados
+banco = sqlite3.connect('alunos.db')
+
+# Cria um cursor para executar comandos SQL
+cursor = banco.cursor()
+
+# Criar a tabela de alunos
+#cursor.execute( "CREATE TABLE alunos ( id INT, nome TEXT, idade INT, curso TEXT) " )
+
+# Inserir dados na tabela
+#cursor.execute("INSERT INTO alunos (id, nome, idade, curso) VALUES (1, 'João', 20, 'Engenharia')")
+#cursor.execute("INSERT INTO alunos (id, nome, idade, curso) VALUES (2, 'Maria', 22, 'Medicina')")
+#cursor.execute("INSERT INTO alunos (id, nome, idade, curso) VALUES (3, 'Pedro', 21, 'Direito')")
+#cursor.execute("INSERT INTO alunos (id, nome, idade, curso) VALUES (4, 'Ana', 19, 'Administração')")
+#cursor.execute("INSERT INTO alunos (id, nome, idade, curso) VALUES (5, 'Carlos', 23, 'Economia')")
+
+# Selecionar todos os registros da tabela
+#cursor.execute("SELECT * FROM alunos")
+
+# Selecionar o nome e a idade dos alunos com mais de 20 anos
+#cursor.execute("SELECT nome, idade FROM alunos WHERE idade > 20")
+
+# Selecionar os alunos do curso de "Engenharia" em ordem alfabética
+#cursor.execute("SELECT * FROM alunos WHERE curso = 'Engenharia' ORDER BY nome")
+
+# Contar o número total de alunos na tabela
+#cursor.execute("SELECT COUNT(*) AS total_alunos FROM alunos")
+
+# Atualize a idade de um aluno específico na tabela
+#cursor.execute("UPDATE alunos SET idade = 25 WHERE id = 3")
+
+# Remova um aluno pelo seu ID
+#cursor.execute("DELETE FROM alunos WHERE id = 2")
+
+# Criar tabela clientes
+#cursor.execute( "CREATE TABLE clientes (id INT PRIMARY KEY, nome TEXT, idade INT, saldo FLOAT)" )
+
+# Inserir Dados
+#cursor.execute("INSERT INTO clientes (id, nome, idade, saldo) VALUES (1, 'João', 30, 1000.50)")
+#cursor.execute("INSERT INTO clientes (id, nome, idade, saldo) VALUES (2, 'Maria', 25, 1500.75)")
+#cursor.execute("INSERT INTO clientes (id, nome, idade, saldo) VALUES (3, 'Pedro', 40, 2000.00)")
+#cursor.execute("INSERT INTO clientes (id, nome, idade, saldo) VALUES (4, 'Ana', 35, 1800.25)")
+#cursor.execute("INSERT INTO clientes (id, nome, idade, saldo) VALUES (5, 'Carlos', 28, 1200.00)")
+
+# Selecione o nome e a idade dos clientes com idade superior a 30 anos
+#cursor.execute("SELECT nome, idade FROM clientes WHERE idade > 30")
+
+# Calcule o saldo médio dos clientes
+#cursor.execute("SELECT AVG(saldo) AS saldo_medio FROM clientes")
+
+# Encontre o cliente com o saldo máximo
+#cursor.execute("SELECT nome, idade, saldo FROM clientes ORDER BY saldo DESC LIMIT 1")
+
+# Conte quantos clientes têm saldo acima de 1000
+#cursor.execute("SELECT COUNT(*) AS total_clientes_>1000 FROM clientes WHERE saldo > 1000")
+
+# Atualize o saldo de um cliente específico
+#cursor.execute("UPDATE clientes SET saldo = 2500.00 WHERE id = 3")
+
+# Remova um cliente pelo seu ID
+#cursor.execute("DELETE FROM clientes WHERE id = 2")
+
+# Criar a tabela compras
+#cursor.execute( "CREATE TABLE compras ( id INT PRIMARY KEY, cliente_id INT, produto TEXT, valor REAL, FOREIGN KEY (cliente_id) REFERENCES clientes(id) )" )
+
+# Inserir Dados
+#cursor.execute("INSERT INTO compras (cliente_id, produto, valor) VALUES (1, 'Produto A', 100.00)")
+#cursor.execute("INSERT INTO compras (cliente_id, produto, valor) VALUES (2, 'Produto B', 150.00)")
+#cursor.execute("INSERT INTO compras (cliente_id, produto, valor) VALUES (3, 'Produto C', 200.00)")
+#cursor.execute("INSERT INTO compras (cliente_id, produto, valor) VALUES (4, 'Produto D', 180.00)")
+#cursor.execute("INSERT INTO compras (cliente_id, produto, valor) VALUES (5, 'Produto E', 120.00)")
+
+# Consulta para exibir o nome do cliente, o produto e o valor de cada compra E juntar as tabelas "clientes" e "compras"
+cursor.execute( "SELECT c.nome, p.produto, p.valor FROM clientes c JOIN compras p ON c.id = p.cliente_id" )
+
+
+# Salva as alterações no banco de dados
+banco.commit()
+
+# Fecha a conexão
+#banco.close()
